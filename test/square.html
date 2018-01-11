@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>box game</title>
+</head>
+    <body>
+          <canvas id="canvas" width="600" height="400"></canvas>
+          <script type="text/javascript">
+          	var canvas = document.getElementById("canvas");
+          	var context = canvas.getContext("2d");
+          	var stageOne = true;
+          	
+          	var player = {
+	         dir: 0,
+	        speed: 5
+        }
+          	moveRectangle("yellow");
+
+          	function moveRectangle(color1){
+	          	context.rect(20, 380, 20, 20);
+	          	context.fillStyle = color1;
+	          	context.fill();
+
+
+	          	var keyclick = {};
+document.addEventListener("keydown", function(event) {
+	keyclick[event.keyCode] = true;
+	move();
+}, false);
+
+document.addEventListener("keyup", function(event) {
+	delete keyclick[event.keyCode];
+}, false);
+
+          }
+function move() {
+	if (37 in keyclick) {
+		moveRectangle.x -= moveRectangle.speed;
+		moveRectangle.dir = 64;
+	}
+	if (38 in keyclick) {
+		moveRectangle.y -= moveRectangle.speed;
+		moveRectangle.dir = 96;
+	}
+	if (39 in keyclick) {
+		player.x +=  moveRectangle.speed;
+		moveRectangle.dir = 0;
+	}
+
+	if (40 in keyclick) { 
+		moveRectangle.y += moveRectangle.speed;
+		moveRectangle.dir = 32;
+	}
+	else {
+		console.log("Wrong Button")
+	}
+	drawRectangle();
+}
+
+
+          	drawRectangle("black");
+          	drawRectangle("black");
+          	drawRectangle("black");
+          	drawRectangle("black");
+          	drawRectangle("black");
+          	drawRectangle("black");
+          	drawRectangle("black");
+          	drawRectangle("black");
+          	drawRectangle("black");
+          	drawRectangle("black");
+
+          	function drawRectangle(color){
+             	var x = Math.floor(Math.random() * 580);
+             	var y = Math.floor(Math.random() * 380);
+	          	context.rect(x, y, 40, 40);
+	          	context.fillStyle = color;
+	          	context.fill();
+          }
+        </script>
+    </body>
+</html>
